@@ -31,7 +31,7 @@ COMPILE_CMD=ant -f scripts$(D)build_test.xml -DTEST_ROOT=$(TEST_ROOT) -DBUILD_RO
 compile:
 	$(RM) -r $(COMPILATION_OUTPUT); \
 	$(MKTREE) $(COMPILATION_OUTPUT); \
-	(ANT_OPTS="-Xjit:{java/util/Hashtable.addEntry*}\(log=$(COMPILATION_OUTPUT)/hashtable.addentry.log,traceLocalVP,traceGlobalVP,traceCG\)" $(COMPILE_CMD) 2>&1; echo $$? ) | tee $(Q)$(COMPILATION_LOG)$(Q); \
+	(ANT_OPTS="-Xrs -Xjit:{java/util/Hashtable.addEntry*}\(log=$(COMPILATION_OUTPUT)/hashtable.addentry.log,traceLocalVP,traceGlobalVP,traceCG\),verbose,vlog=$(COMPILATION_OUTPUT)/vlog" $(COMPILE_CMD) 2>&1; echo $$? ) | tee $(Q)$(COMPILATION_LOG)$(Q); \
 	$(MOVE_TDUMP)
 
 .PHONY: compile
