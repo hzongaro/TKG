@@ -32,7 +32,7 @@ compile:
 	$(RM) -r $(COMPILATION_OUTPUT); \
 	$(MKTREE) $(COMPILATION_OUTPUT); \
 	cp exclude.list $(COMPILATION_OUTPUT); \
-	(ANT_OPTS="-Xnoaot -Xjit:limitFile=\($(COMPILATION_OUTPUT)/exclude.list,1,250\),{java/util/Hashtable.put*}\(log=$(COMPILATION_OUTPUT)/hashtable.log,traceLocalVP,traceGlobalVP,traceCG\),verbose,vlog=$(COMPILATION_OUTPUT)/vlog" $(COMPILE_CMD) 2>&1; echo $$? ) | tee $(Q)$(COMPILATION_LOG)$(Q); \
+	(ANT_OPTS="-Xnoaot -Xjit:limitFile=\($(COMPILATION_OUTPUT)/exclude.list,1,50\),{java/util/Hashtable.put*}\(log=$(COMPILATION_OUTPUT)/hashtable.log,traceLocalVP,traceGlobalVP,traceCG\),verbose,vlog=$(COMPILATION_OUTPUT)/vlog" $(COMPILE_CMD) 2>&1; echo $$? ) | tee $(Q)$(COMPILATION_LOG)$(Q); \
 	$(MOVE_TDUMP)
 
 .PHONY: compile
